@@ -80,22 +80,22 @@ if uploaded_file is not None:
         ax4.bar(dataframe['dv'], dataframe['vv'], normed=True, opening=0.8, edgecolor='white')
         ax4.set_legend()
         plt.savefig('imagenA.png')
-        st.pyplot('imagenA.png')
+        st.pyplot(ax4.figure)
         
     elif add_selectbox=='B':
         ax5 = WindroseAxes.from_ax()
         ax5.box(dataframe['dv'], dataframe['vv'], bins=np.arange(0, 8, 1))
         ax5.set_legend()
         plt.savefig('imagenB.png')
-        st.pyplot('imagenB.png')
+        st.pyplot(ax5.figure)
         
     elif add_selectbox=='C':
-        ax3 = WindroseAxes.from_ax()
-        ax3.contourf(dataframe['dv'], dataframe['vv'], bins=np.arange(0, 8, 1), cmap=cm.hot)
-        ax3.set_legend()
+        ax6 = WindroseAxes.from_ax()
+        ax6.contourf(dataframe['dv'], dataframe['vv'], bins=np.arange(0, 8, 1), cmap=cm.hot)
+        ax6.set_legend()
         plt.savefig('imagenC.png')
-        st.pyplot('imagenC.png')
-#Hola
+        st.pyplot(ax6.figure)
+
 
 
 
