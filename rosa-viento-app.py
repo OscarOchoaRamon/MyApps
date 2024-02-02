@@ -95,9 +95,7 @@ if uploaded_file is not None:
         ax3.set_legend()
         plt.savefig('imagenC.png')
         st.pyplot('imagenC.png')
-
-
-        
+#Hola
 
 
 
