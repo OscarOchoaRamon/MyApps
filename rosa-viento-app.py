@@ -45,7 +45,7 @@ with col3:
     st.header('Opción C')
     st.pyplot(ax3.figure)
     
-uploaded_file = st.sidebar.file_uploader(":blue[Seleccione su archivo Excel:]")
+uploaded_file = st.sidebar.file_uploader(":blue[Seleccione su archivo csv:]")
 
 station_number = st.sidebar.text_input(':blue[Coloque el número de estaciones:]')
     
