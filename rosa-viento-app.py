@@ -6,46 +6,49 @@ import pandas as pd
 st.title(":blue[Generación de rosa de viento]")
 st.write("_(Elaborado por el Equipo de Recursos Hídricos :droplet:)_")
 
-#I stayed here
-if 'w' not in st.session_state:    
-    # Create wind speed and direction variables
-    st.session_state['w'] = np.random.random(500)
-
 division_angule = np.linspace(0, 2 * np.pi, 16, endpoint=False)
 directions = ['E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW','W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE']
 
-ax1 = WindroseAxes.from_ax()
-ax1.bar(st.session_state['w']*360, st.session_state['w']*20, bins=8, normed=True, opening=0.8)
-ax1.set_legend()
-ax1.set_xticks(division_angule)
-ax1.set_xticklabels(directions)
-
-ax2 = WindroseAxes.from_ax()
-ax2.box(st.session_state['w']*360, st.session_state['w']*20, bins=8, normed=True)
-ax2.set_legend()
-ax2.set_xticks(division_angule)
-ax2.set_xticklabels(directions)
-
-ax3 = WindroseAxes.from_ax()
-ax3.contourf(st.session_state['w']*360, st.session_state['w']*20, bins=8, normed=True)
-ax3.set_legend()
-ax3.set_xticks(division_angule)
-ax3.set_xticklabels(directions)
+#I stayed here
+if 'graph1' not in st.session_state or 'graph2' not in st.session_state or 'graph3' not in st.session_state:    
+    # Create wind speed and direction variables
+    valores_random = np.random.random(500)
+    
+    ax1 = WindroseAxes.from_ax()
+    ax1.bar(valores_random*360, valores_random*20, bins=8, normed=True, opening=0.8)
+    ax1.set_legend()
+    ax1.set_xticks(division_angule)
+    ax1.set_xticklabels(directions)
+    st.session_state['graph1']=ax1.figure
+    
+    ax2 = WindroseAxes.from_ax()
+    ax2.box(valores_random*360, valores_random*20, bins=8, normed=True)
+    ax2.set_legend()
+    ax2.set_xticks(division_angule)
+    ax2.set_xticklabels(directions)
+    st.session_state['graph2']=ax2.figure
+    
+    ax3 = WindroseAxes.from_ax()
+    ax3.contourf(valores_random*360, valores_random*20, bins=8, normed=True)
+    ax3.set_legend()
+    ax3.set_xticks(division_angule)
+    ax3.set_xticklabels(directions)
+    st.session_state['graph3']=ax3.figure
     
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.header('Opción A')
-    st.pyplot(ax1.figure)
+    st.pyplot(st.session_state['graph1'])
     
 with col2:
     st.header('Opción B')
-    st.pyplot(ax2.figure)
+    st.pyplot(st.session_state['graph2'])
 with col3:
     st.header('Opción C')
-    st.pyplot(ax3.figure)
+    st.pyplot(st.session_state['graph3'])
     
-uploaded_file = st.sidebar.file_uploader(":blue[Seleccione su archivo csv:]")
+uploaded_file = st.sidebar.file_uploader(":blue[Seleccione su archivo Excel:]")
 
 station_number = st.sidebar.text_input(':blue[Coloque el número de estaciones:]')
     
@@ -90,7 +93,6 @@ if uploaded_file is not None:
         ax6.set_xticks(division_angule)
         ax6.set_xticklabels(directions)
         st.pyplot(ax6.figure)
-
 
 
 
